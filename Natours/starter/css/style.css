@@ -1,226 +1,90 @@
-/*
-COLORS:
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-*/
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
 
-/* * & body below are basic resets for entire project */
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  /* box-sizing: border-box; */
-  /* moved box-sizing of 'border-box' down to body */
-  box-sizing: inherit;
-}
+  box-sizing: inherit; }
 
-/* setting root font-size..for later responsive design. 1rem is now 10px */
 html {
-  /* font-size: 10px; */
-  /* setting html font-size to a % so that users can make changes */
-  /* 100% would be default, which is 16px. But we want this to be 10px(for rem purposes...so you take 10/16=62.5% */
-  font-size: 62.5%;
-}
+  font-size: 62.5%; }
 
 body {
-  /* Lato works because was brought in from Google fonts in the html file */
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  /* font-size: 16px; */
   line-height: 1.7;
   color: #777;
-  /* padding gives entire page 30px of padding. gives some dimension to the look */
-  /* padding: 30px; */
   padding: 3rem;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
-.header {
-  height: 95vh;
-  /* background-image: linear-gradient(to right bottom, #7ed56f, #28b4b4),
-    url(../img/hero.jpg); */
-
-  /* Below explained...this is placing a gradient, transparent color over the image. the .8 in the rgba means 80% transparency */
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(126, 213, 111, 0.8),
-      rgba(40, 180, 131, 0.8)
-    ),
-    url(../img/hero.jpg);
-  /* cover makes the image fit in responsively */
-  background-size: cover;
-  /* ensures top of image stays the same. could also do center...or bottom*/
-  background-position: top;
-  position: relative;
-  /* clipping part of the top green image. below #s are referencing x,y axis, from top left viewpoint */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
-
-/* 'header__ is BEM notation */
-.header__logo-box {
-  /* absolute & 40px are referencing the parent element(header), which has a position of relative. so the 40px is from top/left of header */
-  position: absolute;
-  /* top: 40px;
-  left: 40px; */
-  top: 4rem;
-  left: 4rem;
-}
-
-.header__logo {
-  /* height: 35px; */
-  height: 3.5rem;
-  /* not setting width, will be controlled by height and browser */
-}
-
-.header__text-box {
-  /* centering text box */
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  /* shifts element 50% from left & top...centers the text box */
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.heading-primary {
-  color: #fff;
-  text-transform: uppercase;
-
-  /* hides minor shaking-up during transition */
-  backface-visibility: hidden;
-  /* margin-bottom: 60px; */
-  margin-bottom: 6rem;
-}
-
-.heading-primary--main {
-  /* block takes entire width. also forces next thing to another line */
-  display: block;
-  /* font-size: 60px; */
-  font-size: 6rem;
-  /* font-weight comes from the latos google font brought into the html */
-  font-weight: 400;
-  /* letter-spacing: 35px; */
-  letter-spacing: 3.5rem;
-
-  animation-name: moveInLeft;
-  /* how long the transition takes */
-  animation-duration: 1s;
-  /* timing...not necessary */
-  animation-timing-function: ease-out;
-  /* animation-iteration-count: 3; */
-  /* animation-delay: 3s; */
-}
-
-.heading-primary--sub {
-  display: block;
-  /* font-size: 20px; */
-  font-size: 2rem;
-  font-weight: 700;
-  /* letter-spacing: 17.4px; */
-  letter-spacing: 1.75rem;
-  /* shorter way of righting out each line individually, like above */
-  animation: moveInRight 1s ease-out;
-}
-
-/* remember**you need to assign the below name to the element that's using it (.heading-property-main) */
-/* can use 2 properties with animations/@keyframes: opacity & transform */
-/* naming top part of header (that slides in from left 'moveInLeft' */
-@keyframes moveInLeft {
-  /* choosing what will happen at each part of animation */
-  /* 0% is the start, or before it happens */
-  0% {
-    /* starts out invisible */
-    opacity: 0;
-    /* 'X' is x axis. -100 means it's moving left to right*/
-    /* transform: translateX(-100px); */
-    transform: translateX(-10rem);
-  }
-  /* makes the transition slide 10px past mark, then slide back */
-  /* skip this 80% part if you don't want the bounce-back */
-  80% {
-    /* transform: translateX(10px); */
-    transform: translateX(1rem);
-  }
-  /* 100% is end */
-  100% {
-    /* ends being fully visible */
-    opacity: 1;
-    /* no transformation...ending state */
-    transform: translate(0);
-  }
-}
-
-/* sliding in from opposite direction */
-@keyframes moveInRight {
-  0% {
-    opacity: 0;
-    /* transform: translateX(100px); */
-    transform: translateX(10rem);
-  }
-  80% {
-    /* transform: translateX(-10px); */
-    transform: translateX(-1rem);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-/* moving button up from bottom on render */
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    /* transform: translateY(30px); */
-    transform: translateY(3rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-/* link is a pseudo-class, likve 'hover' */
-.btn:link,
-.btn:visited {
+.btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  /* padding: 15px 40px; */
   padding: 1.5rem 4rem;
   display: inline-block;
-  /* border-radius: 100px; */
   border-radius: 10rem;
-  /* simpler way to transition button upward at beginning of page render */
   transition: all 0.2s;
-  font-size: 1.6rem;
-}
-/* button moves up a little when hovered upon */
+  font-size: 1.6rem; }
+
 .btn:hover {
   transform: translateY(-3px);
-  /* shadow around box on hover. no shadow on sides, 10px down */
-  /* 3rd value is blur. last is black color, with 20% opacity */
-  /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-}
-/* looks like button is being clicked down */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+
 .btn:active {
   transform: translateY(-1px);
-  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); */
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-}
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
 
 .btn--white {
   background-color: #fff;
-  color: #777;
-}
+  color: #777; }
 
 .btn--animated {
-  /* .75s is a delay of .75seconds */
   animation: moveInBottom 0.5s ease-out 0.75s;
-  /* automatically applies styles of 0% before animation starts */
-  animation-fill-mode: backwards;
-}
+  animation-fill-mode: backwards; }
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
