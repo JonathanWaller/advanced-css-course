@@ -8,15 +8,22 @@ Dark green: #28b485
 */
 
 /* * & body below are basic resets for entire project */
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
+  /* moved box-sizing of 'border-box' down to body */
+  box-sizing: inherit;
 }
 
 /* setting root font-size..for later responsive design. 1rem is now 10px */
 html {
-  font-size: 10px;
+  /* font-size: 10px; */
+  /* setting html font-size to a % so that users can make changes */
+  /* 100% would be default, which is 16px. But we want this to be 10px(for rem purposes...so you take 10/16=62.5% */
+  font-size: 62.5%;
 }
 
 body {
@@ -29,6 +36,7 @@ body {
   /* padding gives entire page 30px of padding. gives some dimension to the look */
   /* padding: 30px; */
   padding: 3rem;
+  box-sizing: border-box;
 }
 
 .header {
@@ -52,7 +60,8 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 
-.logo-box {
+/* 'header__ is BEM notation */
+.header__logo-box {
   /* absolute & 40px are referencing the parent element(header), which has a position of relative. so the 40px is from top/left of header */
   position: absolute;
   /* top: 40px;
@@ -61,13 +70,13 @@ body {
   left: 4rem;
 }
 
-.logo {
+.header__logo {
   /* height: 35px; */
   height: 3.5rem;
   /* not setting width, will be controlled by height and browser */
 }
 
-.text-box {
+.header__text-box {
   /* centering text box */
   position: absolute;
   top: 40%;
@@ -87,7 +96,7 @@ body {
   margin-bottom: 6rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
   /* block takes entire width. also forces next thing to another line */
   display: block;
   /* font-size: 60px; */
@@ -106,7 +115,7 @@ body {
   /* animation-delay: 3s; */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
   display: block;
   /* font-size: 20px; */
   font-size: 2rem;
@@ -204,12 +213,12 @@ body {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.btn-white {
+.btn--white {
   background-color: #fff;
   color: #777;
 }
 
-.btn-animated {
+.btn--animated {
   /* .75s is a delay of .75seconds */
   animation: moveInBottom 0.5s ease-out 0.75s;
   /* automatically applies styles of 0% before animation starts */
